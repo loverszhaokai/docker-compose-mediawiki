@@ -5,14 +5,14 @@
 version: '3'
 services:
   mediawiki:
-    image: mediawiki:1.28.2
+    image: mediawiki_update:1.0.0
     restart: always
     ports:
       - 8080:80
     links:
       - mysql
     volumes:
-      - ./mediawiki/images:/var/www/html/images
+      - ./mediawiki/images:/var/www/html/w/images
       # After initial setup, download LocalSettings.php to the same directory as
       # this yaml and uncomment the following line and use compose to restart
       # the mediawiki service
