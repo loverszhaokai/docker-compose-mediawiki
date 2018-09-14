@@ -5,7 +5,7 @@
 version: '3'
 services:
   mediawiki:
-    image: mediawiki_update:1.0.0
+    image: mediawiki_update:1.0.1
     restart: always
     ports:
       - 8080:80
@@ -30,3 +30,11 @@ services:
       MYSQL_DATABASE: mediawiki
       MYSQL_USER: wikiuser
       MYSQL_PASSWORD: wikiuser
+  parsoid:
+    image: loverszhaokai/parsoid:0.9.0
+    restart: always
+    ports:
+      - "8081:8000"
+    environment:
+      PARSOID_API_1: http://10.0.20.29:8080/w/api.php
+      PARSOID_DOMAIN_1: 10.0.20.29

@@ -34,7 +34,6 @@ $wgArticlePath = "/wiki/$1";
 
 $wgAllowUserCss = true;
 
-
 #
 # debug
 #
@@ -42,3 +41,51 @@ $wgAllowUserCss = true;
 #$wgDebugToolbar = true;
 #$wgShowDebug = true;
 #$wgDevelopmentWarnings = true;
+
+
+#
+# Visual Editor begin
+#
+wfLoadExtension( 'VisualEditor' );
+$wgDefaultUserOptions['visualeditor-enable'] = 1;
+// Optional: Set VisualEditor as the default for anonymous users
+// otherwise they will have to switch to VE
+// $wgDefaultUserOptions['visualeditor-editor'] = "visualeditor";
+
+// Don't allow users to disable it
+$wgHiddenPrefs[] = 'visualeditor-enable';
+
+// OPTIONAL: Enable VisualEditor's experimental code features
+#$wgDefaultUserOptions['visualeditor-enable-experimental'] = 1;
+
+$wgVisualEditorAvailableNamespaces = [
+    "File" => false,
+    "Extra" => true
+];
+
+$wgVirtualRestConfig['modules']['parsoid'] = array(
+    // URL to the Parsoid instance
+    // Use port 8142 if you use the Debian package
+    'url' => 'http://10.0.20.29:8081',
+    // Parsoid "domain", see below (optional)
+    'domain' => '10.0.20.29',
+    // Parsoid "prefix", see below (optional)
+    'prefix' => '10.0.20.29',
+    'forwardCookies' => false,
+    'restbaseCompat' => null
+);
+
+
+
+
+$wgVisualEditorEnableWikitext = true;
+$wgDefaultUserOptions['visualeditor-newwikitext'] = 1;
+$wgHiddenPrefs[] = 'visualeditor-newwikitext';
+
+
+$wgSessionsInObjectCache = true;
+
+
+#
+# Visual Editor end
+#
